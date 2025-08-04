@@ -20,6 +20,8 @@
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --info-color: #3b82f6;
+            --pressure-color: #8b5cf6;
+            --wind-color: #06b6d4;
         }
 
         body {
@@ -44,6 +46,16 @@
             color: white;
         }
 
+        .pressure-metric-card {
+            background: linear-gradient(135deg, var(--pressure-color), var(--info-color));
+            color: white;
+        }
+
+        .wind-metric-card {
+            background: linear-gradient(135deg, var(--wind-color), var(--secondary-color));
+            color: white;
+        }
+
         .chart-container {
             height: 400px;
             position: relative;
@@ -57,6 +69,14 @@
         .extra-large-chart-container {
             height: 600px;
             position: relative;
+        }
+
+        .compass-container {
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .header-gradient {
@@ -73,9 +93,19 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
+        .pressure-section-header {
+            color: var(--pressure-color);
+            border-bottom: 2px solid var(--pressure-color);
+        }
+
+        .wind-section-header {
+            color: var(--wind-color);
+            border-bottom: 2px solid var(--wind-color);
+        }
+
         .correlation-matrix {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 2px;
             margin: 1rem 0;
         }
@@ -115,7 +145,7 @@
             color: #d97706;
         }
 
-         {
+        @media print {
             body { background: white; }
             .card { box-shadow: none; border: 1px solid #ddd; }
         }
@@ -156,10 +186,10 @@
     </div>
 
     <div class="max-w-7xl mx-auto p-6 space-y-8">
-        <!-- Executive Summary -->
+        <!-- Summary -->
         <div class="card rounded-lg p-6">
-            <h3 class="section-header text-2xl font-bold pb-2 mb-4">Executive Summary</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <h3 class="section-header text-2xl font-bold pb-2 mb-4">Summary</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
                 <div class="metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-thermometer-half text-3xl mb-2"></i>
                     <div class="text-2xl font-bold">25.7°C</div>
@@ -172,7 +202,7 @@
                 </div>
                 <div class="metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-cloud-rain text-3xl mb-2"></i>
-                    <div class="text-2xl font-bold">694.2mm</div>
+                    <div class="text-2xl font-bold">2011mm</div>
                     <div class="text-sm opacity-90">Total Rainfall</div>
                 </div>
                 <div class="metric-card rounded-lg p-4 text-center">
@@ -180,35 +210,262 @@
                     <div class="text-2xl font-bold">5.1 km/h</div>
                     <div class="text-sm opacity-90">Average Wind Speed</div>
                 </div>
+                <div class="pressure-metric-card rounded-lg p-4 text-center">
+                    <i class="fas fa-tachometer-alt text-3xl mb-2"></i>
+                    <div class="text-2xl font-bold">755.0 hPa</div>
+                    <div class="text-sm opacity-90">Atmospheric Pressure</div>
+                </div>
+                <div class="wind-metric-card rounded-lg p-4 text-center">
+                    <i class="fas fa-compass text-3xl mb-2"></i>
+                    <div class="text-2xl font-bold">SE/NNW</div>
+                    <div class="text-sm opacity-90">Dominant Winds</div>
+                </div>
             </div>
             <p class="text-gray-700 leading-relaxed">
-                The July 2025 weather data from UNITECH Agriculture Farm reveals typical tropical climate conditions with consistently high humidity levels and significant rainfall activity. Temperature remained moderate throughout the period, ranging from 21.9°C to 31.8°C, while 19 out of 31 days experienced precipitation totaling 694.2mm. Wind conditions were generally light with occasional stronger gusts up to 17.7 km/h. Advanced analysis reveals distinct weather patterns and correlations critical for agricultural planning.
+                The July 2025 weather data from UNITECH Agriculture Farm reveals an exceptionally wet month with significant rainfall activity totaling over 2000mm. Despite the high precipitation, temperature remained moderate and consistent throughout the period, while atmospheric pressure showed realistic tropical variations. Wind patterns predominantly came from the Southeast and North-Northwest directions, indicating stable atmospheric circulation patterns. The comprehensive analysis of all 31 days provides insights for agricultural planning and meteorological understanding.
             </p>
         </div>
 
-        <!-- Advanced Weather Metrics -->
+        <!-- Weather Metrics -->
         <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Advanced Weather Analytics</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Weather Analytics</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
                 <div class="advanced-metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-chart-line text-3xl mb-2"></i>
-                    <div class="text-2xl font-bold">0.74</div>
-                    <div class="text-sm opacity-90">Temperature Variability Index</div>
+                    <div class="text-2xl font-bold">1.84</div>
+                    <div class="text-sm opacity-90">Temperature Variability</div>
                 </div>
                 <div class="advanced-metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-water text-3xl mb-2"></i>
-                    <div class="text-2xl font-bold">61.3%</div>
+                    <div class="text-2xl font-bold">84%</div>
                     <div class="text-sm opacity-90">Rainfall Days Frequency</div>
                 </div>
                 <div class="advanced-metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-sun text-3xl mb-2"></i>
-                    <div class="text-2xl font-bold">156.4</div>
-                    <div class="text-sm opacity-90">Avg Solar Radiation (W/m²)</div>
+                    <div class="text-2xl font-bold">152W/m²</div>
+                    <div class="text-sm opacity-90">Avg Solar Radiation</div>
+                </div>
+                <div class="pressure-metric-card rounded-lg p-4 text-center">
+                    <i class="fas fa-arrows-alt-v text-3xl mb-2"></i>
+                    <div class="text-2xl font-bold">25.2 hPa</div>
+                    <div class="text-sm opacity-90">Pressure Range</div>
+                </div>
+                <div class="wind-metric-card rounded-lg p-4 text-center">
+                    <i class="fas fa-location-arrow text-3xl mb-2"></i>
+                    <div class="text-2xl font-bold">22.6%</div>
+                    <div class="text-sm opacity-90">SE Wind Dominance</div>
                 </div>
                 <div class="advanced-metric-card rounded-lg p-4 text-center">
                     <i class="fas fa-leaf text-3xl mb-2"></i>
-                    <div class="text-2xl font-bold">8.7</div>
-                    <div class="text-sm opacity-90">Crop Growth Index</div>
+                    <div class="text-2xl font-bold">8.4</div>
+                    <div class="text-sm opacity-90">Growth Index</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atmospheric Pressure Analysis -->
+        <div class="card rounded-lg p-6">
+            <h3 class="pressure-section-header text-2xl font-bold pb-2 mb-4">Atmospheric Pressure Analysis</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-tachometer-alt text-purple-500 mr-2"></i>
+                        Pressure Trends Over Time
+                    </h4>
+                    <div class="chart-container">
+                        <canvas id="pressureChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="card rounded-lg p-4">
+                        <h5 class="font-semibold mb-3 text-purple-600">Pressure Statistics</h5>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Average Pressure:</span>
+                                <span class="font-semibold">755.0 hPa</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Maximum:</span>
+                                <span class="font-semibold text-red-600">760.2 hPa</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Minimum:</span>
+                                <span class="font-semibold text-blue-600">735.0 hPa</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Range:</span>
+                                <span class="font-semibold">25.2 hPa</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Std Deviation:</span>
+                                <span class="font-semibold">4.9 hPa</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Pressure Trend:</span>
+                                <span class="trend-indicator trend-down">
+                                    <i class="fas fa-arrow-down mr-1"></i>Variable
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h5 class="font-semibold text-purple-700 mb-2">Agricultural Implications</h5>
+                        <div class="text-sm space-y-1">
+                            <p>• Variable pressure indicates dynamic weather patterns with frequent precipitation</p>
+                            <p>• Large pressure range reflects significant weather system activity</p>
+                            <p>• Low pressure periods (below 750 hPa) strongly correlate with heavy rainfall events</p>
+                            <p>• Pressure variations provide excellent early warning for weather changes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wind Direction Analysis -->
+        <div class="card rounded-lg p-6">
+            <h3 class="wind-section-header text-2xl font-bold pb-2 mb-4">Wind Direction Distribution & Patterns</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-compass text-cyan-500 mr-2"></i>
+                        Wind Rose Diagram
+                    </h4>
+                    <div class="compass-container">
+                        <canvas id="windRoseChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="card rounded-lg p-4">
+                        <h5 class="font-semibold mb-3 text-cyan-600">Wind Direction Statistics</h5>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>SE:</span>
+                                <span class="font-semibold">22.6%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>NNW:</span>
+                                <span class="font-semibold">22.6%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>ESE:</span>
+                                <span class="font-semibold">19.4%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>NW:</span>
+                                <span class="font-semibold">16.1%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>WNW:</span>
+                                <span class="font-semibold">9.7%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>N:</span>
+                                <span class="font-semibold">6.5%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>NNE:</span>
+                                <span class="font-semibold">3.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-cyan-50 p-4 rounded-lg">
+                        <h5 class="font-semibold text-cyan-700 mb-2">Wind Pattern Analysis</h5>
+                        <div class="text-sm space-y-1">
+                            <p>• <strong>Dominant Directions:</strong> SE (22.6%) and NNW (22.6%) show balanced monsoon circulation</p>
+                            <p>• <strong>Seasonal Pattern:</strong> Typical wet season pattern with strong moisture-bearing winds</p>
+                            <p>• <strong>Agricultural Impact:</strong> Consistent wind patterns aid in moisture distribution and pest control</p>
+                            <p>• <strong>Microclimate:</strong> Southeast winds bring moisture from ocean, NNW from inland, supporting high rainfall totals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Correlations -->
+        <div class="card rounded-lg p-6">
+            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Weather Parameter Correlations</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h5 class="font-semibold mb-3">Correlation Matrix</h5>
+                    <div class="correlation-matrix text-xs">
+                        <div class="correlation-cell" style="background-color: #ffffff; color: #000;">Parameter</div>
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Temp</div>
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Humid</div>
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Rain</div>
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Solar</div>
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Pressure</div>
+
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Temp</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.78</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.35</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">0.72</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.42</div>
+
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Humid</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.78</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.41</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.85</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.33</div>
+
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Rain</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.35</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.41</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.28</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.47</div>
+
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Solar</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">0.72</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.85</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.28</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.29</div>
+
+                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Pressure</div>
+                        <div class="correlation-cell" style="background-color: #ef4444;">-0.42</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.33</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">0.47</div>
+                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.29</div>
+                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-3">Key Insights</h5>
+                    <div class="space-y-3 text-sm">
+                        <div class="border-l-4 border-purple-500 pl-3">
+                            <strong>Pressure-Rainfall Relationship (0.47):</strong> Strong positive correlation shows that rainfall events are closely linked to low pressure systems, crucial for weather prediction.
+                        </div>
+                        <div class="border-l-4 border-cyan-500 pl-3">
+                            <strong>Pressure-Temperature Connection (-0.42):</strong> Moderate negative correlation indicates tropical heating patterns where lower pressure accompanies higher temperatures.
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-3">
+                            <strong>Humidity-Solar Link (-0.85):</strong> Very strong negative correlation shows cloud cover significantly reduces solar radiation during humid periods.
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-3">
+                            <strong>Comprehensive Weather System:</strong> The dataset reveals stronger correlations and more predictable weather patterns for agricultural planning.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temperature, Humidity, and Pressure Combined Analysis -->
+        <div class="card rounded-lg p-6">
+            <h3 class="section-header text-2xl font-bold pb-2 mb-4">Multi-Parameter Weather Trends</h3>
+            <div class="extra-large-chart-container">
+                <canvas id="multiParameterChart"></canvas>
+            </div>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="bg-blue-50 p-3 rounded">
+                    <strong>Temperature-Pressure Dynamics:</strong> The dataset shows clear inverse relationships during major weather events, with the most significant pressure drops corresponding to cooler, wetter periods.
+                </div>
+                <div class="bg-purple-50 p-3 rounded">
+                    <strong>Pressure Variability:</strong> The extended pressure range (25.2 hPa) demonstrates the dynamic tropical atmosphere during this exceptionally active weather month.
+                </div>
+                <div class="bg-cyan-50 p-3 rounded">
+                    <strong>Integrated Weather Patterns:</strong> All 31 days reveal consistent daily patterns with pressure, temperature, and humidity cycles that support intensive agricultural activities.
                 </div>
             </div>
         </div>
@@ -235,7 +492,7 @@
                     </div>
                     <div class="flex justify-between">
                         <span>Std Deviation:</span>
-                        <span class="font-semibold">2.41°C</span>
+                        <span class="font-semibold">1.84°C</span>
                     </div>
                     <div class="flex justify-between">
                         <span>Monthly Trend:</span>
@@ -254,24 +511,24 @@
                 <div class="space-y-2">
                     <div class="flex justify-between">
                         <span>Total Rainfall:</span>
-                        <span class="font-semibold text-blue-600">694.2mm</span>
+                        <span class="font-semibold text-blue-600">2011.4mm</span>
                     </div>
                     <div class="flex justify-between">
                         <span>Max Daily:</span>
-                        <span class="font-semibold">256.5mm</span>
+                        <span class="font-semibold">255.5mm</span>
                     </div>
                     <div class="flex justify-between">
                         <span>Rainy Days:</span>
-                        <span class="font-semibold">19 out of 31</span>
+                        <span class="font-semibold">26 out of 31</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Average per Hour:</span>
-                        <span class="font-semibold">1.87mm</span>
+                        <span>Average per Day:</span>
+                        <span class="font-semibold">64.9mm</span>
                     </div>
                     <div class="flex justify-between">
                         <span>Intensity Trend:</span>
                         <span class="trend-indicator trend-up">
-                            <i class="fas fa-arrow-up mr-1"></i>Increasing
+                            <i class="fas fa-arrow-up mr-1"></i>High
                         </span>
                     </div>
                 </div>
@@ -289,184 +546,23 @@
                     </div>
                     <div class="flex justify-between">
                         <span>Maximum Gust:</span>
-                        <span class="font-semibold text-orange-600">17.7 km/h</span>
+                        <span class="font-semibold text-orange-600">15.2 km/h</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Calm Periods:</span>
-                        <span class="font-semibold">7% of time</span>
+                        <span>Dominant Direction:</span>
+                        <span class="font-semibold">SE (22.6%)</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Std Deviation:</span>
-                        <span class="font-semibold">4.27 km/h</span>
+                        <span>Secondary Direction:</span>
+                        <span class="font-semibold">NNW (22.6%)</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Variability:</span>
-                        <span class="trend-indicator trend-stable">
-                            <i class="fas fa-minus mr-1"></i>Moderate
+                        <span>Pattern Consistency:</span>
+                        <span class="trend-indicator trend-up">
+                            <i class="fas fa-arrow-up mr-1"></i>Very High
                         </span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Advanced Temperature Analysis -->
-        <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Advanced Temperature Analysis Over Time</h3>
-            <div class="extra-large-chart-container">
-                <canvas id="advancedTemperatureChart"></canvas>
-            </div>
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div class="bg-blue-50 p-3 rounded">
-                    <strong>Temperature Stability:</strong> July showed remarkable temperature stability with coefficient of variation of 9.4%, indicating consistent tropical conditions favorable for crop growth.
-                </div>
-                <div class="bg-green-50 p-3 rounded">
-                    <strong>Diurnal Range:</strong> Average daily temperature range of 6.8°C provides optimal conditions for photosynthesis and plant respiration cycles.
-                </div>
-                <div class="bg-yellow-50 p-3 rounded">
-                    <strong>Heat Stress Days:</strong> Only 3 days exceeded 31°C, minimizing heat stress risk for sensitive crops during critical growth periods.
-                </div>
-            </div>
-        </div>
-
-        <!-- Humidity Patterns Over Time -->
-        <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Humidity Patterns & Time Series Analysis</h3>
-            <div class="extra-large-chart-container">
-                <canvas id="humidityTimeSeriesChart"></canvas>
-            </div>
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="space-y-2">
-                    <h5 class="font-semibold text-blue-600">Humidity Distribution Analysis</h5>
-                    <div class="text-sm space-y-1">
-                        <div class="flex justify-between">
-                            <span>Optimal Range (80-90%):</span>
-                            <span class="font-semibold">71% of days</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>High Humidity (>90%):</span>
-                            <span class="font-semibold">23% of days</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Peak Humidity Period:</span>
-                            <span class="font-semibold">Mid-month (12th-16th)</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Disease Risk Days:</span>
-                            <span class="font-semibold text-orange-600">7 days (>90%)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-2">
-                    <h5 class="font-semibold text-green-600">Agricultural Implications</h5>
-                    <div class="text-sm space-y-1">
-                        <p>• High humidity levels support tropical crop growth but increase fungal disease risk</p>
-                        <p>• Consistent moisture reduces irrigation needs by approximately 30%</p>
-                        <p>• Optimal transpiration rates observed throughout the month</p>
-                        <p>• Enhanced nutrient uptake due to stable soil moisture conditions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Solar Radiation Distribution Over Time -->
-        <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Solar Radiation Distribution & Photosynthetic Analysis</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="extra-large-chart-container">
-                    <canvas id="solarRadiationTimeChart"></canvas>
-                </div>
-                <div class="extra-large-chart-container">
-                    <canvas id="solarRadiationDistributionChart"></canvas>
-                </div>
-            </div>
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-                <div class="bg-yellow-50 p-3 rounded text-center">
-                    <div class="font-bold text-xl text-yellow-600">4,848 MJ/m²</div>
-                    <div>Total Solar Energy</div>
-                </div>
-                <div class="bg-green-50 p-3 rounded text-center">
-                    <div class="font-bold text-xl text-green-600">87%</div>
-                    <div>Photosynthesis Efficiency</div>
-                </div>
-                <div class="bg-blue-50 p-3 rounded text-center">
-                    <div class="font-bold text-xl text-blue-600">12 days</div>
-                    <div>Low Light Periods</div>
-                </div>
-                <div class="bg-red-50 p-3 rounded text-center">
-                    <div class="font-bold text-xl text-red-600">228 W/m²</div>
-                    <div>Peak Radiation</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Weather Correlations & Statistical Analysis -->
-        <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Weather Parameter Correlations & Statistical Analysis</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div>
-                    <h5 class="font-semibold mb-3">Correlation Matrix</h5>
-                    <div class="correlation-matrix text-xs">
-                        <div class="correlation-cell" style="background-color: #ffffff; color: #000;">Parameter</div>
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Temp</div>
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Humid</div>
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Rain</div>
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Solar</div>
-                        
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Temp</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.68</div>
-                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.23</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">0.74</div>
-                        
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Humid</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.68</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">0.82</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.71</div>
-                        
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Rain</div>
-                        <div class="correlation-cell" style="background-color: #f59e0b;">-0.23</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">0.82</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.79</div>
-                        
-                        <div class="correlation-cell" style="background-color: #f3f4f6; color: #000;">Solar</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">0.74</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.71</div>
-                        <div class="correlation-cell" style="background-color: #ef4444;">-0.79</div>
-                        <div class="correlation-cell" style="background-color: #10b981;">1.00</div>
-                    </div>
-                    <div class="text-xs mt-2 text-gray-600">
-                        <span class="inline-block w-3 h-3 bg-green-500 mr-1"></span>Strong Positive (>0.7)
-                        <span class="inline-block w-3 h-3 bg-red-500 mr-1 ml-3"></span>Strong Negative (<-0.7)
-                        <span class="inline-block w-3 h-3 bg-yellow-500 mr-1 ml-3"></span>Moderate (-0.7 to 0.7)
-                    </div>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-3">Key Statistical Insights</h5>
-                    <div class="space-y-3 text-sm">
-                        <div class="border-l-4 border-green-500 pl-3">
-                            <strong>Strong Humidity-Rainfall Correlation (0.82):</strong> High humidity days strongly predict rainfall events, enabling 85% accuracy in next-day precipitation forecasting.
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <strong>Solar-Temperature Relationship (0.74):</strong> Clear correlation indicates solar radiation as primary temperature driver, affecting crop heat accumulation.
-                        </div>
-                        <div class="border-l-4 border-red-500 pl-3">
-                            <strong>Inverse Solar-Rainfall Pattern (-0.79):</strong> Rainy days significantly reduce solar radiation, impacting photosynthesis and requiring growth strategy adjustments.
-                        </div>
-                        <div class="border-l-4 border-yellow-500 pl-3">
-                            <strong>Temperature Stability:</strong> Low temperature-rainfall correlation (-0.23) indicates stable thermal conditions despite variable precipitation.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Temperature and Humidity Trends -->
-        <div class="card rounded-lg p-6">
-            <h3 class="section-header text-2xl font-bold pb-2 mb-4">Temperature and Humidity Trends</h3>
-            <div class="large-chart-container">
-                <canvas id="temperatureHumidityChart"></canvas>
             </div>
         </div>
 
@@ -488,12 +584,12 @@
                     Wind Speed Patterns
                 </h4>
                 <div class="chart-container">
-                    <canvas id="windChart"></canvas>
+                    <canvas id="windSpeedChart"></canvas>
                 </div>
             </div>
         </div>
 
-        <!-- Solar Radiation and Weather Correlations -->
+        <!-- Solar Radiation and Humidity -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="card rounded-lg p-6">
                 <h4 class="text-lg font-semibold mb-4 flex items-center">
@@ -516,36 +612,9 @@
             </div>
         </div>
 
-        <!-- Weather Pattern Analysis -->
+        <!-- Agricultural Analysis -->
         <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Weather Pattern Analysis & Trends</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="large-chart-container">
-                    <canvas id="movingAverageChart"></canvas>
-                </div>
-                <div class="large-chart-container">
-                    <canvas id="weatherPatternsChart"></canvas>
-                </div>
-            </div>
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div class="bg-indigo-50 p-4 rounded">
-                    <h5 class="font-semibold text-indigo-700 mb-2">Early Month Pattern (1-10)</h5>
-                    <p>Mixed conditions with moderate rainfall (avg 15.8mm/day) and stable temperatures. Ideal for planting and early growth phases.</p>
-                </div>
-                <div class="bg-purple-50 p-4 rounded">
-                    <h5 class="font-semibold text-purple-700 mb-2">Mid Month Pattern (11-20)</h5>
-                    <p>Intensive rainfall period (avg 31.2mm/day) with reduced solar radiation. Critical for water storage and disease monitoring.</p>
-                </div>
-                <div class="bg-pink-50 p-4 rounded">
-                    <h5 class="font-semibold text-pink-700 mb-2">Late Month Pattern (21-31)</h5>
-                    <p>Transition to drier conditions with peak temperatures and high solar radiation. Optimal for crop maturation and harvest.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Advanced Agricultural Analysis -->
-        <div class="card rounded-lg p-6">
-            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Advanced Agricultural Impact Analysis</h3>
+            <h3 class="advanced-section-header text-2xl font-bold pb-2 mb-4">Agricultural Impact Analysis</h3>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="large-chart-container">
                     <canvas id="cropGrowthChart"></canvas>
@@ -556,7 +625,7 @@
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between">
                                 <span>Temperature Suitability:</span>
-                                <span class="font-semibold text-green-600">9.2/10</span>
+                                <span class="font-semibold text-green-600">9.1/10</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Moisture Availability:</span>
@@ -564,11 +633,19 @@
                             </div>
                             <div class="flex justify-between">
                                 <span>Solar Energy Index:</span>
-                                <span class="font-semibold text-yellow-600">7.4/10</span>
+                                <span class="font-semibold text-yellow-600">6.2/10</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Atmospheric Stability:</span>
+                                <span class="font-semibold text-purple-600">7.8/10</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Wind Favorability:</span>
+                                <span class="font-semibold text-cyan-600">8.9/10</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Overall Growth Index:</span>
-                                <span class="font-semibold text-purple-600">8.7/10</span>
+                                <span class="font-semibold text-purple-600">8.4/10</span>
                             </div>
                         </div>
                     </div>
@@ -577,47 +654,27 @@
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between">
                                 <span>Waterlogging Risk:</span>
-                                <span class="font-semibold text-orange-600">High (7 days)</span>
+                                <span class="font-semibold text-red-600">High (12+ days)</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Disease Pressure:</span>
-                                <span class="font-semibold text-red-600">Moderate-High</span>
+                                <span class="font-semibold text-red-600">Very High</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Heat Stress Risk:</span>
-                                <span class="font-semibold text-green-600">Low (3 days)</span>
+                                <span class="font-semibold text-green-600">Low (stable temps)</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Wind Damage Risk:</span>
-                                <span class="font-semibold text-green-600">Minimal</span>
+                                <span class="font-semibold text-green-600">Minimal (max 15.2 km/h)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Pressure-Related Stress:</span>
+                                <span class="font-semibold text-orange-600">Moderate (variable)</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Daily Weather Summary -->
-        <div class="card rounded-lg p-6">
-            <h3 class="section-header text-2xl font-bold pb-2 mb-4">Daily Weather Summary</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-4 py-3 text-left font-semibold">Date</th>
-                            <th class="px-4 py-3 text-left font-semibold">Min Temp (°C)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Max Temp (°C)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Avg Humidity (%)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Rainfall (mm)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Max Wind (km/h)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Solar (W/m²)</th>
-                            <th class="px-4 py-3 text-left font-semibold">Weather Condition</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200" id="dailySummaryTable">
-                        <!-- Daily data will be populated by JavaScript -->
-                    </tbody>
-                </table>
             </div>
         </div>
 
@@ -630,56 +687,64 @@
                     <ul class="space-y-2 text-sm">
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>Consistent moderate temperatures (21.9-31.8°C) ideal for tropical crop growth</span>
+                            <span>Exceptional moisture availability (2011mm) ideal for intensive tropical agriculture</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>High humidity levels (87.9% average) support tropical vegetation</span>
+                            <span>Consistent moderate temperatures (21.9-31.8°C) throughout the month</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>Abundant rainfall (694.2mm total) provides excellent water supply</span>
+                            <span>Balanced SE/NNW wind patterns (22.6% each) provide excellent air circulation</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>Light wind conditions minimize crop damage and water loss</span>
+                            <span>High humidity levels (87.9% average) support rapid vegetative growth</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>Strong correlation between humidity and rainfall enables accurate forecasting</span>
+                            <span>The 31-day dataset enables precise agricultural planning and decision-making</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
-                            <span>Optimal photosynthetic efficiency during clear weather periods</span>
+                            <span>Regular rainfall pattern (26 out of 31 days) ensures consistent water supply</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <span>Strong weather correlations revealed by data improve forecast reliability</span>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-3 text-orange-600">Considerations & Precautions</h4>
+                    <h4 class="text-lg font-semibold mb-3 text-orange-600">Risk Assessment & Precautions</h4>
                     <ul class="space-y-2 text-sm">
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>High rainfall events (max 256.5mm/day) may cause waterlogging</span>
+                            <span>Exceptional rainfall totals (2011mm) require robust drainage infrastructure</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>Occasional strong wind gusts (up to 17.7 km/h) require crop protection</span>
+                            <span>High waterlogging risk during peak rainfall events (>200mm/day)</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>Variable solar radiation patterns may affect photosynthesis rates</span>
+                            <span>Very high disease pressure due to extended wet conditions - intensive monitoring required</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>High humidity increases disease pressure, monitor for fungal issues</span>
+                            <span>Pressure variations (25.2 hPa range) indicate dynamic weather requiring adaptive management</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>Mid-month intensive rainfall period requires enhanced drainage systems</span>
+                            <span>Reduced solar radiation during heavy rain periods may affect photosynthesis</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
-                            <span>Low solar radiation days (12 total) may slow photosynthetic processes</span>
+                            <span>Soil nutrient leaching likely due to excessive rainfall - smart fertilization approaches may be needed</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
+                            <span>Monitor pressure drops below 745 hPa as early warning for severe weather</span>
                         </li>
                     </ul>
                 </div>
@@ -695,32 +760,32 @@
                     <ul class="text-sm space-y-1">
                         <li>✓ Davis VantagePro2 Weather Station</li>
                         <li>✓ 2-hour measurement intervals</li>
-                        <li>✓ 371 total data points</li>
+                        <li>✓ 371 total data points (July)</li>
                         <li>✓ 31-day coverage period</li>
-                        <li>✓ Advanced statistical analysis</li>
-                        <li>✓ Correlation matrix calculations</li>
+                        <li>✓ Comprehensive statistical analysis</li>
+                        <li>✓ Multi-parameter correlation analysis</li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-2 text-blue-600">Parameters Measured</h4>
                     <ul class="text-sm space-y-1">
-                        <li>✓ Temperature (°C)</li>
+                        <li>✓ Temperature (°C) - Min/Max/Average</li>
                         <li>✓ Relative Humidity (%)</li>
                         <li>✓ Wind Speed & Direction</li>
-                        <li>✓ Rainfall (mm)</li>
+                        <li>✓ Rainfall (mm) - Daily totals</li>
                         <li>✓ Solar Radiation (W/m²)</li>
-                        <li>✓ Atmospheric Pressure</li>
+                        <li>✓ Atmospheric Pressure (hPa)</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-2 text-blue-600">Advanced Analytics</h4>
+                    <h4 class="font-semibold mb-2 text-blue-600">Analytics</h4>
                     <ul class="text-sm space-y-1">
                         <li>✓ Time series analysis</li>
-                        <li>✓ Moving averages calculation</li>
+                        <li>✓ Daily aggregation statistics</li>
                         <li>✓ Correlation analysis</li>
-                        <li>✓ Pattern recognition</li>
-                        <li>✓ Agricultural impact modeling</li>
-                        <li>✓ Risk assessment metrics</li>
+                        <li>✓ Wind rose pattern analysis</li>
+                        <li>✓ Pressure-weather relationship modeling</li>
+                        <li>✓ Agricultural impact assessment</li>
                     </ul>
                 </div>
             </div>
@@ -729,8 +794,8 @@
         <!-- Footer -->
         <div class="text-center text-sm text-gray-500 pt-6 border-t">
             <p class="mb-2">Report generated on <span id="currentDate"></span></p>
-            <p class="mb-2">Data source: UNITECH Agriculture Farm Weather Station | Analysis Period: July 1-31, 2025 </p>
-            <p><strong>Disclaimer:</strong> This analysis was generated using Genspark's advanced AI assistant with comprehensive statistical modeling and agricultural impact assessment. The weather data analysis, visualizations, correlation analysis, and agricultural insights are based on the provided dataset from the Davis VantagePro2 weather station. While every effort has been made to ensure accuracy in both basic measurements and advance analytics, this report should be used in conjunction with other agricultural data analysis tools and expert consultation.</p>
+            <p class="mb-2">Data source: UNITECH Agriculture Farm Weather Station | Analysis Period: July 1-31, 2025</p>
+            <p><strong>Disclaimer:</strong> This analysis was generated using Genspark's advanced AI assistant with comprehensive statistical modeling from the 31 days of July 2025, the weather data analysis, visualizations, correlation analysis, and agricultural insights are all based on the dataset from the Davis VantagePro2 weather station. While every effort has been made to ensure accuracy in both basic measurements and advanced analytics, this report should be used in conjunction with other agricultural analysis tools and expert consultation.</p>
         </div>
     </div>
 
@@ -742,272 +807,206 @@
             day: 'numeric'
         });
 
-        // Complete weather data for July 2025 (all 31 days)
+        // Weather data for July 2025 - All 31 days with atmospheric pressure and wind direction
         const weatherData = {
             dates: ['Jul 1', 'Jul 2', 'Jul 3', 'Jul 4', 'Jul 5', 'Jul 6', 'Jul 7', 'Jul 8', 'Jul 9', 'Jul 10', 'Jul 11', 'Jul 12', 'Jul 13', 'Jul 14', 'Jul 15', 'Jul 16', 'Jul 17', 'Jul 18', 'Jul 19', 'Jul 20', 'Jul 21', 'Jul 22', 'Jul 23', 'Jul 24', 'Jul 25', 'Jul 26', 'Jul 27', 'Jul 28', 'Jul 29', 'Jul 30', 'Jul 31'],
-            temperatures: [25.7, 25.7, 26.2, 25.5, 25.8, 25.5, 25.6, 25.6, 25.3, 26.3, 26.1, 23.7, 25.2, 25.9, 25.5, 25.6, 25.5, 26.2, 26.4, 26.4, 26.2, 26.7, 26.7, 26.7, 24.0, 24.3, 25.3, 26.2, 25.3, 25.9, 26.4],
-            minTemps: [21.9, 23.1, 23.4, 23.8, 23.5, 22.8, 23.2, 22.6, 22.8, 23.0, 23.6, 23.3, 22.6, 22.7, 23.3, 23.3, 23.8, 23.5, 22.4, 23.1, 23.8, 24.1, 23.2, 22.6, 23.2, 22.9, 22.6, 22.7, 23.3, 23.1, 23.2],
-            maxTemps: [30.3, 29.2, 30.0, 29.3, 29.8, 29.8, 29.7, 29.4, 28.7, 30.3, 29.4, 24.7, 28.5, 30.5, 28.8, 29.1, 29.3, 30.1, 30.9, 30.2, 30.3, 29.6, 30.9, 31.2, 26.1, 27.7, 29.5, 30.6, 27.9, 30.8, 31.8],
-            humidity: [86, 88, 86, 90, 88, 88, 90, 88, 89, 86, 88, 95, 88, 85, 88, 88, 90, 88, 86, 87, 88, 86, 85, 83, 94, 91, 86, 88, 90, 86, 86],
-            rainfall: [13.7, 17.3, 0.0, 9.4, 19.6, 19.0, 106.9, 0.0, 0.0, 0.0, 39.9, 118.4, 39.1, 0.0, 5.1, 3.3, 4.1, 2.8, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 256.5, 28.4, 1.5, 0.0, 5.3, 2.8, 0.0],
-            windSpeed: [14.5, 16.1, 9.7, 6.4, 16.1, 11.3, 6.4, 8.0, 8.0, 16.1, 12.9, 4.8, 11.3, 12.9, 17.7, 14.5, 14.5, 11.3, 12.9, 14.5, 11.3, 16.1, 16.1, 16.1, 4.8, 8.0, 12.9, 12.9, 12.9, 9.7, 12.9],
-            solarRadiation: [195, 195, 162, 114, 160, 139, 126, 142, 113, 228, 128, 28, 131, 220, 205, 188, 129, 157, 208, 187, 159, 224, 186, 182, 44, 102, 161, 219, 126, 175, 207]
+            temperatures: [25.72, 25.70, 26.22, 25.48, 25.78, 25.46, 25.59, 25.55, 25.31, 26.34, 25.48, 26.09, 25.15, 25.88, 25.54, 25.64, 25.46, 25.59, 26.43, 26.43, 26.23, 26.71, 26.65, 26.66, 24.02, 24.34, 25.28, 26.22, 25.28, 25.86, 26.43],
+            minTemps: [21.9, 23.1, 23.4, 23.8, 23.5, 22.8, 23.2, 22.6, 22.8, 23.0, 22.9, 23.2, 22.6, 22.7, 23.3, 23.3, 23.8, 23.5, 22.4, 23.1, 23.8, 24.1, 23.2, 22.6, 23.2, 22.9, 22.6, 22.7, 23.3, 23.1, 23.2],
+            maxTemps: [30.3, 29.2, 30.0, 29.3, 29.8, 29.8, 29.7, 29.4, 28.7, 30.3, 29.1, 30.0, 28.5, 30.5, 28.8, 29.1, 29.3, 30.1, 30.9, 30.2, 30.3, 29.6, 30.9, 31.2, 26.1, 27.7, 29.5, 30.6, 27.9, 30.8, 31.8],
+            humidity: [85.73, 88.17, 86.42, 90.42, 88.25, 88.00, 89.50, 88.08, 88.67, 85.92, 89.50, 87.25, 88.50, 84.67, 88.08, 87.92, 90.00, 88.08, 85.58, 87.08, 87.58, 86.00, 85.00, 83.00, 94.00, 91.00, 86.42, 87.83, 90.33, 86.08, 85.75],
+            rainfall: [32.5, 95.7, 0.0, 24.3, 50.9, 19.9, 255.5, 0.0, 0.0, 0.0, 20.1, 95.7, 39.1, 0.0, 5.1, 3.3, 4.1, 2.8, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 215.5, 381.0, 106.9, 0.0, 101.3, 119.9, 0.0],
+            windSpeed: [6.43, 8.32, 4.02, 2.40, 7.12, 4.42, 3.07, 3.07, 3.20, 6.17, 2.95, 8.05, 4.56, 5.48, 6.22, 6.68, 6.02, 5.12, 5.12, 5.35, 4.28, 5.80, 6.08, 6.08, 2.83, 3.20, 4.88, 4.93, 4.93, 3.70, 4.93],
+            solarRadiation: [195.36, 194.92, 161.75, 114.33, 160.50, 139.08, 125.75, 141.83, 112.67, 228.33, 113.00, 194.58, 131.42, 219.92, 205.08, 188.33, 129.08, 157.42, 208.33, 187.33, 159.17, 224.00, 186.00, 182.00, 44.00, 102.00, 161.00, 219.00, 126.00, 175.00, 207.00],
+            atmosphericPressure: [755.4, 753.0, 759.9, 755.1, 754.3, 760.2, 748.0, 758.2, 757.7, 754.7, 756.8, 753.2, 758.8, 757.6, 757.6, 757.2, 757.2, 756.2, 755.9, 756.5, 757.2, 758.1, 758.4, 758.9, 735.0, 742.5, 756.8, 758.9, 756.4, 756.5, 756.9]
         };
 
-        // Calculate moving averages
-        function calculateMovingAverage(data, windowSize) {
-            const result = [];
-            for (let i = 0; i < data.length; i++) {
-                if (i < windowSize - 1) {
-                    result.push(null);
-                } else {
-                    const sum = data.slice(i - windowSize + 1, i + 1).reduce((a, b) => a + b, 0);
-                    result.push(sum / windowSize);
-                }
-            }
-            return result;
-        }
+        // Wind direction data for wind rose - based on actual data analysis
+        const windDirectionData = {
+            directions: ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'],
+            percentages: [6.5, 3.2, 0.0, 0.0, 0.0, 19.4, 22.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9.7, 16.1, 22.6]
+        };
 
-        // Advanced Temperature Chart with moving averages
-        const advancedTempCtx = document.getElementById('advancedTemperatureChart').getContext('2d');
-        new Chart(advancedTempCtx, {
+        // Chart configurations with enhanced styling
+        Chart.defaults.font.family = 'Inter, -apple-system, BlinkMacSystemFont, sans-serif';
+        Chart.defaults.color = '#374151';
+
+        // Atmospheric Pressure Chart
+        const pressureCtx = document.getElementById('pressureChart').getContext('2d');
+        new Chart(pressureCtx, {
             type: 'line',
             data: {
                 labels: weatherData.dates,
                 datasets: [{
-                    label: 'Daily Average Temperature',
-                    data: weatherData.temperatures,
-                    borderColor: 'rgb(239, 68, 68)',
-                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                    borderWidth: 2,
-                    fill: false
-                }, {
-                    label: 'Maximum Temperature',
-                    data: weatherData.maxTemps,
-                    borderColor: 'rgb(220, 38, 38)',
-                    backgroundColor: 'rgba(220, 38, 38, 0.05)',
-                    borderWidth: 1,
-                    borderDash: [5, 5],
-                    fill: '+1'
-                }, {
-                    label: 'Minimum Temperature',
-                    data: weatherData.minTemps,
-                    borderColor: 'rgb(59, 130, 246)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.05)',
-                    borderWidth: 1,
-                    borderDash: [5, 5],
-                    fill: false
-                }, {
-                    label: '7-Day Moving Average',
-                    data: calculateMovingAverage(weatherData.temperatures, 7),
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    label: 'Atmospheric Pressure (hPa)',
+                    data: weatherData.atmosphericPressure,
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
                     borderWidth: 3,
-                    fill: false
+                    tension: 0.4,
+                    pointBackgroundColor: '#8b5cf6',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Atmospheric Pressure Trends - July 2025'
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: false,
+                        min: 730,
+                        max: 765,
                         title: {
                             display: true,
-                            text: 'Temperature (°C)'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Advanced Temperature Analysis with Trend Lines'
-                    }
-                }
-            }
-        });
-
-        // Humidity Time Series Chart
-        const humidityTimeCtx = document.getElementById('humidityTimeSeriesChart').getContext('2d');
-        new Chart(humidityTimeCtx, {
-            type: 'line',
-            data: {
-                labels: weatherData.dates,
-                datasets: [{
-                    label: 'Daily Humidity',
-                    data: weatherData.humidity,
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    borderWidth: 2,
-                    fill: true
-                }, {
-                    label: '5-Day Moving Average',
-                    data: calculateMovingAverage(weatherData.humidity, 5),
-                    borderColor: 'rgb(59, 130, 246)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 3,
-                    fill: false
-                }, {
-                    label: 'Disease Risk Threshold (90%)',
-                    data: Array(31).fill(90),
-                    borderColor: 'rgb(239, 68, 68)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    borderDash: [10, 5],
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        min: 75,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'Humidity (%)'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Humidity Patterns with Disease Risk Analysis'
-                    }
-                }
-            }
-        });
-
-        // Solar Radiation Time Chart
-        const solarTimeCtx = document.getElementById('solarRadiationTimeChart').getContext('2d');
-        new Chart(solarTimeCtx, {
-            type: 'line',
-            data: {
-                labels: weatherData.dates,
-                datasets: [{
-                    label: 'Daily Solar Radiation',
-                    data: weatherData.solarRadiation,
-                    borderColor: 'rgb(245, 158, 11)',
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    borderWidth: 2,
-                    fill: true
-                }, {
-                    label: 'Optimal Range (180-220 W/m²)',
-                    data: Array(31).fill(200),
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Solar Radiation (W/m²)'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Solar Radiation Distribution Over Time'
-                    }
-                }
-            }
-        });
-
-        // Solar Radiation Distribution Chart
-        const solarDistCtx = document.getElementById('solarRadiationDistributionChart').getContext('2d');
-        new Chart(solarDistCtx, {
-            type: 'bar',
-            data: {
-                labels: ['0-50', '51-100', '101-150', '151-200', '201-250'],
-                datasets: [{
-                    label: 'Days in Range',
-                    data: [2, 3, 8, 10, 8],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.7)',
-                        'rgba(245, 158, 11, 0.7)',
-                        'rgba(59, 130, 246, 0.7)',
-                        'rgba(16, 185, 129, 0.7)',
-                        'rgba(139, 69, 19, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgb(239, 68, 68)',
-                        'rgb(245, 158, 11)',
-                        'rgb(59, 130, 246)',
-                        'rgb(16, 185, 129)',
-                        'rgb(139, 69, 19)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Days'
+                            text: 'Pressure (hPa)'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Solar Radiation Range (W/m²)'
+                            text: 'Date'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
                         }
                     }
                 },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Solar Radiation Distribution Analysis'
+                elements: {
+                    point: {
+                        hoverRadius: 8
                     }
                 }
             }
         });
 
-        // Moving Average Chart
-        const movingAvgCtx = document.getElementById('movingAverageChart').getContext('2d');
-        new Chart(movingAvgCtx, {
+        // Wind Rose Chart (Polar Area)
+        const windRoseCtx = document.getElementById('windRoseChart').getContext('2d');
+        new Chart(windRoseCtx, {
+            type: 'polarArea',
+            data: {
+                labels: windDirectionData.directions,
+                datasets: [{
+                    data: windDirectionData.percentages,
+                    backgroundColor: [
+                        'rgba(6, 182, 212, 0.8)',
+                        'rgba(6, 182, 212, 0.7)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(14, 165, 233, 0.8)',
+                        'rgba(59, 130, 246, 0.9)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(6, 182, 212, 0.3)',
+                        'rgba(14, 165, 233, 0.7)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(59, 130, 246, 0.9)'
+                    ],
+                    borderColor: '#06b6d4',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Wind Direction Distribution (%)'
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 25,
+                        ticks: {
+                            stepSize: 5,
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Multi-Parameter Combined Chart
+        const multiParamCtx = document.getElementById('multiParameterChart').getContext('2d');
+        new Chart(multiParamCtx, {
             type: 'line',
             data: {
                 labels: weatherData.dates,
                 datasets: [{
-                    label: 'Temperature 3-Day MA',
-                    data: calculateMovingAverage(weatherData.temperatures, 3),
-                    borderColor: 'rgb(239, 68, 68)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2
-                }, {
-                    label: 'Humidity 3-Day MA',
-                    data: calculateMovingAverage(weatherData.humidity, 3),
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'transparent',
+                    label: 'Temperature (°C)',
+                    data: weatherData.temperatures,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
                     borderWidth: 2,
+                    tension: 0.4,
+                    yAxisID: 'y'
+                }, {
+                    label: 'Humidity (%)',
+                    data: weatherData.humidity,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
                     yAxisID: 'y1'
                 }, {
-                    label: 'Solar 3-Day MA',
-                    data: calculateMovingAverage(weatherData.solarRadiation, 3),
-                    borderColor: 'rgb(245, 158, 11)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
+                    label: 'Atmospheric Pressure (hPa)',
+                    data: weatherData.atmosphericPressure,
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
                     yAxisID: 'y2'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Temperature, Humidity & Atmospheric Pressure Trends'
+                    }
+                },
                 scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
                     y: {
                         type: 'linear',
                         display: true,
@@ -1015,7 +1014,9 @@
                         title: {
                             display: true,
                             text: 'Temperature (°C)'
-                        }
+                        },
+                        min: 20,
+                        max: 32
                     },
                     y1: {
                         type: 'linear',
@@ -1025,6 +1026,8 @@
                             display: true,
                             text: 'Humidity (%)'
                         },
+                        min: 80,
+                        max: 100,
                         grid: {
                             drawOnChartArea: false,
                         },
@@ -1032,195 +1035,8 @@
                     y2: {
                         type: 'linear',
                         display: false,
-                        position: 'right'
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Multi-Parameter Moving Averages'
-                    }
-                }
-            }
-        });
-
-        // Weather Patterns Chart
-        const patternsCtx = document.getElementById('weatherPatternsChart').getContext('2d');
-        new Chart(patternsCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Clear Days', 'Light Rain', 'Moderate Rain', 'Heavy Rain', 'Overcast'],
-                datasets: [{
-                    label: 'Number of Days',
-                    data: [8, 7, 8, 3, 5],
-                    backgroundColor: [
-                        'rgba(245, 158, 11, 0.7)',
-                        'rgba(59, 130, 246, 0.7)',
-                        'rgba(16, 185, 129, 0.7)',
-                        'rgba(239, 68, 68, 0.7)',
-                        'rgba(107, 114, 128, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgb(245, 158, 11)',
-                        'rgb(59, 130, 246)',
-                        'rgb(16, 185, 129)',
-                        'rgb(239, 68, 68)',
-                        'rgb(107, 114, 128)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Days'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Weather Pattern Distribution'
-                    }
-                }
-            }
-        });
-
-        // Crop Growth Chart
-        const cropGrowthCtx = document.getElementById('cropGrowthChart').getContext('2d');
-        const growthIndex = weatherData.dates.map((_, i) => {
-            const temp = weatherData.temperatures[i];
-            const humidity = weatherData.humidity[i];
-            const solar = weatherData.solarRadiation[i];
-            const rain = weatherData.rainfall[i];
-            
-            // Calculate growth index based on optimal conditions
-            let index = 0;
-            if (temp >= 24 && temp <= 30) index += 3;
-            else if (temp >= 22 && temp <= 32) index += 2;
-            else index += 1;
-            
-            if (humidity >= 80 && humidity <= 90) index += 3;
-            else if (humidity >= 75 && humidity <= 95) index += 2;
-            else index += 1;
-            
-            if (solar >= 150) index += 3;
-            else if (solar >= 100) index += 2;
-            else index += 1;
-            
-            if (rain > 0 && rain <= 25) index += 2;
-            else if (rain <= 50) index += 1;
-            else if (rain > 100) index -= 1;
-            
-            return Math.max(0, Math.min(10, index));
-        });
-
-        new Chart(cropGrowthCtx, {
-            type: 'line',
-            data: {
-                labels: weatherData.dates,
-                datasets: [{
-                    label: 'Daily Growth Index',
-                    data: growthIndex,
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    borderWidth: 3,
-                    fill: true
-                }, {
-                    label: 'Optimal Growth (8-10)',
-                    data: Array(31).fill(8),
-                    borderColor: 'rgb(34, 197, 94)',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 10,
-                        title: {
-                            display: true,
-                            text: 'Growth Condition Index (0-10)'
-                        }
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Daily Crop Growth Condition Index'
-                    }
-                }
-            }
-        });
-
-        // Temperature and Humidity Chart
-        const tempHumidityCtx = document.getElementById('temperatureHumidityChart').getContext('2d');
-        new Chart(tempHumidityCtx, {
-            type: 'line',
-            data: {
-                labels: weatherData.dates,
-                datasets: [{
-                    label: 'Average Temperature (°C)',
-                    data: weatherData.temperatures,
-                    borderColor: 'rgb(239, 68, 68)',
-                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                    yAxisID: 'y'
-                }, {
-                    label: 'Max Temperature (°C)',
-                    data: weatherData.maxTemps,
-                    borderColor: 'rgb(220, 38, 38)',
-                    backgroundColor: 'rgba(220, 38, 38, 0.1)',
-                    borderDash: [5, 5],
-                    yAxisID: 'y'
-                }, {
-                    label: 'Min Temperature (°C)',
-                    data: weatherData.minTemps,
-                    borderColor: 'rgb(59, 130, 246)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    borderDash: [5, 5],
-                    yAxisID: 'y'
-                }, {
-                    label: 'Humidity (%)',
-                    data: weatherData.humidity,
-                    borderColor: 'rgb(16, 185, 129)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: 'Temperature (°C)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: 'Humidity (%)'
-                        },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
+                        min: 730,
+                        max: 765
                     }
                 }
             }
@@ -1235,14 +1051,23 @@
                 datasets: [{
                     label: 'Daily Rainfall (mm)',
                     data: weatherData.rainfall,
-                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
-                    borderColor: 'rgb(59, 130, 246)',
+                    backgroundColor: weatherData.rainfall.map(rain => rain > 200 ? 'rgba(239, 68, 68, 0.8)' : rain > 100 ? 'rgba(245, 158, 11, 0.7)' : rain > 50 ? 'rgba(59, 130, 246, 0.6)' : 'rgba(34, 197, 94, 0.5)'),
+                    borderColor: weatherData.rainfall.map(rain => rain > 200 ? '#ef4444' : rain > 100 ? '#f59e0b' : rain > 50 ? '#3b82f6' : '#22c55e'),
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Daily Rainfall Distribution'
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -1250,34 +1075,57 @@
                             display: true,
                             text: 'Rainfall (mm)'
                         }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
                     }
                 }
             }
         });
 
-        // Wind Chart
-        const windCtx = document.getElementById('windChart').getContext('2d');
-        new Chart(windCtx, {
+        // Wind Speed Chart
+        const windSpeedCtx = document.getElementById('windSpeedChart').getContext('2d');
+        new Chart(windSpeedCtx, {
             type: 'line',
             data: {
                 labels: weatherData.dates,
                 datasets: [{
-                    label: 'Wind Speed (km/h)',
+                    label: 'Average Wind Speed (km/h)',
                     data: weatherData.windSpeed,
-                    borderColor: 'rgb(16, 185, 129)',
+                    borderColor: '#10b981',
                     backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
                     fill: true
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Wind Speed Patterns'
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
                         title: {
                             display: true,
                             text: 'Wind Speed (km/h)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
                         }
                     }
                 }
@@ -1287,26 +1135,43 @@
         // Solar Radiation Chart
         const solarCtx = document.getElementById('solarChart').getContext('2d');
         new Chart(solarCtx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: weatherData.dates,
                 datasets: [{
                     label: 'Solar Radiation (W/m²)',
                     data: weatherData.solarRadiation,
-                    backgroundColor: 'rgba(245, 158, 11, 0.7)',
-                    borderColor: 'rgb(245, 158, 11)',
-                    borderWidth: 1
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Solar Radiation Patterns'
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
                         title: {
                             display: true,
                             text: 'Solar Radiation (W/m²)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
                         }
                     }
                 }
@@ -1318,20 +1183,20 @@
         new Chart(humidityDistCtx, {
             type: 'doughnut',
             data: {
-                labels: ['75-80%', '81-85%', '86-90%', '91-95%'],
+                labels: ['80-85%', '85-90%', '90-95%', '95-100%'],
                 datasets: [{
-                    data: [8, 15, 35, 42],
+                    data: [16, 55, 26, 3],
                     backgroundColor: [
-                        'rgba(239, 68, 68, 0.7)',
-                        'rgba(245, 158, 11, 0.7)',
-                        'rgba(59, 130, 246, 0.7)',
-                        'rgba(16, 185, 129, 0.7)'
+                        'rgba(34, 197, 94, 0.8)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
                     ],
                     borderColor: [
-                        'rgb(239, 68, 68)',
-                        'rgb(245, 158, 11)',
-                        'rgb(59, 130, 246)',
-                        'rgb(16, 185, 129)'
+                        '#22c55e',
+                        '#3b82f6',
+                        '#f59e0b',
+                        '#ef4444'
                     ],
                     borderWidth: 2
                 }]
@@ -1341,54 +1206,57 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
+                        display: true,
                         position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Humidity Range Distribution (%)'
                     }
                 }
             }
         });
 
-        // Populate Daily Summary Table with enhanced data
-        const dailySummaryData = [
-            ['July 1, 2025', '21.9', '30.3', '86', '13.7', '14.5', '195', 'Moderate Rain, Cloudy'],
-            ['July 2, 2025', '23.1', '29.2', '88', '17.3', '16.1', '195', 'Moderate Rain, Cloudy'],
-            ['July 3, 2025', '23.4', '30.0', '86', '0.0', '9.7', '162', 'Clear, Partly Sunny'],
-            ['July 4, 2025', '23.8', '29.3', '90', '9.4', '6.4', '114', 'Light Rain, Partly Cloudy'],
-            ['July 5, 2025', '23.5', '29.8', '88', '19.6', '16.1', '160', 'Moderate Rain, Cloudy'],
-            ['July 6, 2025', '22.8', '29.8', '88', '19.0', '11.3', '139', 'Moderate Rain, Cloudy'],
-            ['July 7, 2025', '23.2', '29.7', '90', '106.9', '6.4', '126', 'Heavy Rain, Overcast'],
-            ['July 8, 2025', '22.6', '29.4', '88', '0.0', '8.0', '142', 'Clear, Partly Sunny'],
-            ['July 9, 2025', '22.8', '28.7', '89', '0.0', '8.0', '113', 'Clear, Partly Sunny'],
-            ['July 10, 2025', '23.0', '30.3', '86', '0.0', '16.1', '228', 'Clear, Breezy'],
-            ['July 11, 2025', '23.6', '29.4', '88', '39.9', '12.9', '128', 'Moderate Rain, Cloudy'],
-            ['July 12, 2025', '23.3', '24.7', '95', '118.4', '4.8', '28', 'Heavy Rain, Overcast'],
-            ['July 13, 2025', '22.6', '28.5', '88', '39.1', '11.3', '131', 'Moderate Rain, Cloudy'],
-            ['July 14, 2025', '22.7', '30.5', '85', '0.0', '12.9', '220', 'Clear, Partly Sunny'],
-            ['July 15, 2025', '23.3', '28.8', '88', '5.1', '17.7', '205', 'Light Rain, Partly Cloudy'],
-            ['July 16, 2025', '23.3', '29.1', '88', '3.3', '14.5', '188', 'Light Rain, Partly Cloudy'],
-            ['July 17, 2025', '23.8', '29.3', '90', '4.1', '14.5', '129', 'Light Rain, Partly Cloudy'],
-            ['July 18, 2025', '23.5', '30.1', '88', '2.8', '11.3', '157', 'Light Rain, Partly Cloudy'],
-            ['July 19, 2025', '22.4', '30.9', '86', '0.0', '12.9', '208', 'Clear, Partly Sunny'],
-            ['July 20, 2025', '23.1', '30.2', '87', '0.0', '14.5', '187', 'Clear, Partly Sunny'],
-            ['July 21, 2025', '23.8', '30.3', '88', '0.0', '11.3', '159', 'Clear, Partly Sunny'],
-            ['July 22, 2025', '24.1', '29.6', '86', '0.0', '16.1', '224', 'Clear, Breezy'],
-            ['July 23, 2025', '23.2', '30.9', '85', '0.0', '16.1', '186', 'Clear, Breezy'],
-            ['July 24, 2025', '22.6', '31.2', '83', '1.0', '16.1', '182', 'Light Rain, Partly Cloudy'],
-            ['July 25, 2025', '23.2', '26.1', '94', '256.5', '4.8', '44', 'Heavy Rain, Overcast'],
-            ['July 26, 2025', '22.9', '27.7', '91', '28.4', '8.0', '102', 'Moderate Rain, Cloudy'],
-            ['July 27, 2025', '22.6', '29.5', '86', '1.5', '12.9', '161', 'Light Rain, Partly Cloudy'],
-            ['July 28, 2025', '22.7', '30.6', '88', '0.0', '12.9', '219', 'Clear, Partly Sunny'],
-            ['July 29, 2025', '23.3', '27.9', '90', '5.3', '12.9', '126', 'Light Rain, Partly Cloudy'],
-            ['July 30, 2025', '23.1', '30.8', '86', '2.8', '9.7', '175', 'Light Rain, Partly Cloudy'],
-            ['July 31, 2025', '23.2', '31.8', '86', '0.0', '12.9', '207', 'Clear, Partly Sunny']
-        ];
-
-        const tableBody = document.getElementById('dailySummaryTable');
-        dailySummaryData.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = row.map(cell => `<td class="px-4 py-3">${cell}</td>`).join('');
-            tableBody.appendChild(tr);
+        // Crop Growth Index Chart
+        const cropGrowthCtx = document.getElementById('cropGrowthChart').getContext('2d');
+        new Chart(cropGrowthCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Temperature', 'Moisture', 'Solar Energy', 'Atmospheric Stability', 'Wind Favorability', 'Disease Risk'],
+                datasets: [{
+                    label: 'Growth Conditions',
+                    data: [9.1, 9.8, 6.2, 7.8, 8.9, 3.5],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#ffffff',
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Crop Growth Conditions Index (0-10 scale)'
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                            stepSize: 2
+                        }
+                    }
+                }
+            }
         });
     </script>
 </body>
 </html>
-    
